@@ -36,6 +36,8 @@ app.post("/webhook", async (req, res) => {
             frequency_penalty: 0.5,
             presence_penalty: 0,
         });
+        console.log(prompt)
+        console.log(response)
         // 文字列化したメッセージデータ
         const dataString = JSON.stringify({
             replyToken: req.body.events[0].replyToken,
