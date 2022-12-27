@@ -26,7 +26,7 @@ app.post("/webhook", async (req, res) => {
     res.send("HTTP POST request sent to the webhook URL!")
     // ユーザーがボットにメッセージを送った場合、返信メッセージを送る
     if (req.body.events[0].type === "message") {
-        const prompt = "Hello Worldって何ですか？"
+        const prompt = req.body.events[0].messages.text
         const response = await openai.createCompletion({
             model: "text-davinci-003",
             prompt: prompt,
