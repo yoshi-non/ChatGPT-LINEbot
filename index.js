@@ -25,11 +25,11 @@ app.get("/", (req, res) => {
 app.post("/webhook", async (req, res) => {
     res.send("HTTP POST request sent to the webhook URL!")
     // ユーザーがボットにメッセージを送った場合、返信メッセージを送る
-    if (req.body.event.type === "message" && req.body.event.message.type === 'text') {
-        const prompt = req.body.prompt
+    if (req.body.events[0].type === "message") {
+        const prompt = "Hello Worldって何ですか？"
         const response = await openai.createCompletion({
             model: "text-davinci-003",
-            prompt: `${prompt}`,
+            prompt: prompt,
             temperature: 0,
             max_tokens: 3000,
             top_p: 1,
@@ -44,7 +44,7 @@ app.post("/webhook", async (req, res) => {
             messages: [
                 {
                     "type": "text",
-                    "text": `${response.data.choices[0].text}`
+                    "text": response.data.choices[0].text
                 }
             ]
         })
