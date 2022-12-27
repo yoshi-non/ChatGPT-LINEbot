@@ -42,11 +42,11 @@ app.post("/webhook", async (req, res) => {
             messages: [
                 {
                     "type": "text",
-                    "text": `${response.data.choices[0].text.trim()}`
+                    "text": `${response.data.choices[0].text}`
                 }
             ]
         })
-
+        console.log(response.data.choices[0].text)
         // リクエストヘッダー
         const headers = {
             "Content-Type": "application/json",
