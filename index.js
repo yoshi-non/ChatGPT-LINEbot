@@ -36,8 +36,6 @@ app.post("/webhook", async (req, res) => {
             frequency_penalty: 0.5,
             presence_penalty: 0,
         });
-        console.log(prompt)
-        console.log(response)
         // 文字列化したメッセージデータ
         const postText = response.data.choices[0].text
         const dataString = JSON.stringify({
@@ -45,8 +43,7 @@ app.post("/webhook", async (req, res) => {
             messages: [
                 {
                     "type": "text",
-                    "text": prompt
-                    // "text": postText.trim()
+                    "text": postText.trim()
                 }
             ]
         })
