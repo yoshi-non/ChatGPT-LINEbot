@@ -39,12 +39,13 @@ app.post("/webhook", async (req, res) => {
         console.log(prompt)
         console.log(response)
         // 文字列化したメッセージデータ
+        const postText = response.data.choices[0].text
         const dataString = JSON.stringify({
             replyToken: req.body.events[0].replyToken,
             messages: [
                 {
                     "type": "text",
-                    "text": response.data.choices[0].text
+                    "text": postText.trim()
                 }
             ]
         })
